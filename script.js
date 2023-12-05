@@ -15,11 +15,25 @@ const generateTable = () => {
     }
     if(rowsNumber>0 && columnsNumber>0){
         tableExists = true
+    }else{
+        console.log(rowsNumber);
+        Swal.fire({
+            title: 'Error!',
+            text:`${isNaN(rowsNumber) || rowsNumber <= 0?"please add rows number ":"please add columns number"}`,
+            icon: 'error',
+            confirmButtonText:"I will correct the input"
+          })
     }
 }
 
 const ExportToExcel = (type, fn, dl) => {
     if(!tableExists){
+        Swal.fire({
+            title: 'Error!',
+            text: 'There is no generated table to be exported',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
         return
     }
     var elt = table
